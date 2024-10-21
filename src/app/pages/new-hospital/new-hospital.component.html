@@ -1,0 +1,61 @@
+<div class="container">
+    <div class="heading">
+      <h1>Hospital</h1>
+    </div>
+    <form>
+      <div class="content">
+        <div class="row">
+          <mat-form-field>
+            <mat-label>Username</mat-label>
+            <input matInput [(ngModel)]="hospitalObj.userName" name="userName"   />
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Password</mat-label>
+            <input matInput [(ngModel)]="hospitalObj.password" name="password"   />
+          </mat-form-field>
+        </div>
+  
+        <div class="row">
+          <mat-form-field>
+            <mat-label>Hospital name</mat-label>
+            <input matInput [(ngModel)]="hospitalObj.hospitalName" name="hospitalName"   />
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Contact no</mat-label>
+            <input matInput [(ngModel)]="hospitalObj.hospitalContactNo" name="hospitalContactNo"   />
+          </mat-form-field>
+        </div>
+  
+        <div class="row">
+          <mat-form-field>
+            <mat-label>Owner name</mat-label>
+            <input matInput [(ngModel)]="hospitalObj.hospitalOwnerName" name="hospitalOwnerName"   />
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label> Owner contact no</mat-label>
+            <input matInput [(ngModel)]="hospitalObj.hospitalOwnerContactNo" name="hospitalOwnerContactNo"   />
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Owner email id</mat-label>
+            <input matInput [(ngModel)]="hospitalObj.hospitalEmailId" name="hospitalEmailId"   />
+          </mat-form-field>
+        </div>
+  
+        <div class="row">
+          <mat-form-field>
+            <mat-label>City</mat-label>
+            <input matInput [(ngModel)]="hospitalObj.hospitalCity" name="hospitalCity" />
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label> Address</mat-label>
+            <input matInput [(ngModel)]="hospitalObj.hospitalAddress" name="hospitalAddress" />
+          </mat-form-field>
+        </div>
+        <div class="row">
+          <button mat-flat-button color="primary" type="button" (click)="onRegister()" >Submit</button>
+          <button mat-flat-button color="accent">Reset</button>
+        </div>
+      </div>
+    </form>
+  </div>
+  

@@ -1,0 +1,21 @@
+body{
+    background-image: url('https://media.istockphoto.com/id/1364075546/photo/empty-corridor-in-modern-hospital-with-information-counter-and-hospital-bed-in-rooms-3d.jpg?s=612x612&w=0&k=20&c=xxFDmIVpH1wJaaiorpvfzec4RRggSb48PDb_dU9bTjo=');
+background-repeat: no-repeat;
+background-position: 100% 100%;
+background-size: 100% 100%;
+}
+
+.header {
+    z-index: 2;
+    background-color: rgb(246, 246, 246);
+    background-size: cover;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    padding: 20px;
+    border-radius: 10px;
+    color: black;
+  }
+  
+  .form-row {
+    margin-bottom: 10px;
+  }
+  

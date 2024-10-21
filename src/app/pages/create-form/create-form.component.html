@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row justify-content-center align-items-center">
+        <div class="col-md-4">
+          <div class="header">
+            <h1>New Appointment</h1>
+            <form
+              #appointmentForm="ngForm"
+              (ngSubmit)="appointmentForm.valid && bookAppointment()"
+            >
+              <div class="form-row">
+                <div class="col">
+                  <input
+                    type="text"
+                    class="form-control"
+                    [(ngModel)]="newAppointment.name"
+                    name="name"
+                    #name="ngModel"
+                    placeholder="First Name"
+                    required
+                    maxlength="50"
+                  />
+                  <div *ngIf="name.errors && name.touched">
+                    <small class="text-danger" *ngIf="name.errors['required']"
+                      >firstname is required
+                    </small>
+                    <small class="text-danger" *ngIf="name.errors['maxlength']">
+                      maximum 32 characteres is required
+                    </small>
+                  </div>
+                </div>
+                <div class="col">
+                  <input
+                    type="text"
+                    class="form-control"
+                    [(ngModel)]="newAppointment.mobileNo"
+                    placeholder="Mobile Number"
+                    name="mobileNo"
+                    #mobileNo="ngModel"
+                    required
+                    maxlength="10"
+                    minlength="10"
+                  />
+                  <div *ngIf="mobileNo.errors && mobileNo.touched">
+                    <small class="text-danger" *ngIf="mobileNo.errors['required']"> mobile no  is required   </small>
+                    <small class="text-danger" *ngIf="mobileNo.errors['maxlength'] || mobileNo.errors['minlength']|| mobileNo.errors['pattern']"> enter a valid mobile number </small>
+                </div>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="col">
+                  <input
+                    type="text"
+                    class="form-control"
+                    [(ngModel)]="newAppointment.city"
+                    placeholder="City"
+                    name="city"
+                    #city="ngModel"
+                    required
+                  />
+                  <div *ngIf="city.errors && city.touched">
+                    <small class="text-danger" *ngIf="city.errors['required']"
+                      >cityname is required
+                    </small>
+                    <small class="text-danger" *ngIf="city.errors['maxlength']">
+                      maximum 32 characteres is required
+                    </small>
+                  </div>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="col">
+                  <input
+                    type="text"
+                    class="form-control"
+                    [(ngModel)]="newAppointment.age"
+                    placeholder="Age"
+                    name="Age"
+                    #age="ngModel"
+                  />
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="col">
+                  <div class="form-check">
+                    <input
+                      type="checkbox"
+                      class="form-check-input"
+                      [(ngModel)]="newAppointment.isFirstVisit"
+                      nameid="firstTime"
+                      name="isFirstVisit"
+                      #isFirstVisit="ngModel"
+                    />
+                    <label class="form-check-label" for="firstTime"
+                      >First Time?</label
+                    >
+                  </div>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="col">
+                  <div class="form-check form-check-inline">
+                    <input
+                      class="form-check-input"
+                      type="radio"
+                      name="gender"
+                      id="male"
+                      value="male"
+                      [(ngModel)]="newAppointment.gender"
+                    />
+                    <label class="form-check-label" for="male">Male</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input
+                      class="form-check-input"
+                      type="radio"
+                      name="gender"
+                      id="female"
+                      value="female"
+                      #gender="ngModel"
+                      [(ngModel)]="newAppointment.gender"
+                    />
+                    <label class="form-check-label" for="female">Female</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input
+                      class="form-check-input"
+                      type="radio"
+                      name="gender"
+                      id="other"
+                      value="other"
+                      #gender="ngModel"
+                      [(ngModel)]="newAppointment.gender"
+                    />
+                    <label class="form-check-label" for="other">Other</label>
+                  </div>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="col">
+                  <div class="form-group">
+                    <label for="appointmentDate">Date</label>
+                    <input
+                      type="date"
+                      class="form-control"
+                      name="appointmentDate"
+                      [(ngModel)]="newAppointment.appointmentDate"
+                      id="appointmentDate"
+                      #appointmentDate="ngModel"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="col">
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="appointmentTime"
+                    [(ngModel)]="newAppointment.appointmentTime"
+                    placeholder="enter Appointment"
+                    #appointmentTime="ngModel"
+                  />
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="col">
+                  <div class="form-group">
+                    <label for="narration">Narration</label>
+                    <textarea
+                      class="form-control"
+                      [(ngModel)]="newAppointment.naration"
+                      name="narration"
+                      id="narration"
+                      #naration="ngModel"
+                      rows="3"
+                    ></textarea>
+                  </div>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="col">
+                  <button type="submit" class="btn btn-primary">
+                    {{ isLoading ? "..." : "book" }}
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <form>
+      <div class="container">
+        <div class="row justify-content-center w-100">
+          <div class="col-md-4">
+            <div class="header">
+              <h1>New Appointment</h1>
+              <form #patientForm="ngForm"  (ngSubmit)="patientForm.valid && addNewPatient()">
+                <div class="form-row m-3">
+                  <div class="col">
+                    <input
+                      type="text"
+                      class="form-control"
+                       #name="ngModel"
+                      name="name"
+                      [(ngModel)]="newPatients.name"
+                      placeholder="First Name"
+                      required
+                      maxlength="50"
+                      [ngClass]="{ error: name.errors && name.touched }"
+
+                    />
+                    <div *ngIf="name.errors && name.touched">
+                      <small class="text-danger" *ngIf="name.errors['required']"
+                        >firstname is required
+                      </small>
+                      <small class="text-danger" *ngIf="name.errors['maxlength']">
+                        maximum 32 characteres is required
+                      </small>
+                    </div>
+                  </div>
+                
+                </div>
+                <div class="form-row m-3">
+                  <div class="col">
+                    <input
+                      type="text"
+                      class="form-control"
+                      maxlength="10"
+                      minlength="10"
+                      placeholder="Mobile Number"
+                      name="mobileNo"
+                      [pattern]="interRegex"
+                      #mobileNo="ngModel"
+                      required
+                      [(ngModel)]="newPatients.mobileNo"
+                    />
+                    <div *ngIf="mobileNo.errors && mobileNo.touched">
+                      <small class="text-danger" *ngIf="mobileNo.errors['required']"> mobile no  is required   </small>
+                      <small class="text-danger" *ngIf="mobileNo.errors['maxlength'] || mobileNo.errors['minlength']|| mobileNo.errors['pattern']"> enter a valid mobile number </small>
+                  
+                  </div>
+                  </div>
+                </div>
+
+                <div class="form-row m-3">
+                  <div class="col">
+                    <input
+                      type="text"
+                      class="form-control"
+              #city="ngModel"
+                      placeholder="City"
+                      name="city"
+                      required
+                      maxlength="30"
+                      [ngModel]="newPatients.city"
+                    />
+
+                    <div *ngIf="city.errors && city.touched">
+                      <small class="text-danger" *ngIf="city.errors['required']"
+                        >city is required
+                      </small>
+                      <small class="text-danger" *ngIf="city.errors['maxlength']">
+                        maximum 32 characteres is required
+                      </small>
+                    </div>
+
+
+                  </div>
+                </div>
+                <div class="form-row m-3">
+                  <div class="col">
+                    <input
+                      type="number"
+                      class="form-control"
+                      placeholder="Age"
+                      name="age"
+                      required
+                      min="18"
+                      max="60"
+                      #age="ngModel"
+                      [(ngModel)]="newPatients.age"
+                    />
+
+                    <div *ngIf="age.errors && age.touched">
+                      <small class="text-danger" *ngIf="age.errors['required']"> is required   </small>
+                      <small class="text-danger" *ngIf="age.errors['max'] || age.errors['min']" > age must be between 18 years to 60 years  </small>
+                  <small class="text-danger" *ngIf="age.errors['pattern']">plaese enter valid age   </small>    
+                  
+                  </div>
+                  
+                  </div>
+                </div>
+                <div class="form-row m-3" [class.error]="gender.touched && !newPatients.gender">
+                  <div class="col">
+                    <div class="form-check form-check-inline">
+                      <input
+                        class="form-check-input"
+                        type="radio"
+                        name="gender"
+                        id="male"
+                        #gender="ngModel"
+                        value="male"
+                        [(ngModel)]="newPatients.gender"
+                        required
+                      />
+                      <label class="form-check-label" for="male">Male</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input
+                        class="form-check-input"
+                        type="radio"
+                        name="gender"
+                        id="female"
+                        value="female"
+                        #gender="ngModel"
+                        [(ngModel)]="newPatients.gender"
+                        required
+                      />
+                      <label class="form-check-label" for="female">Female</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input
+                        class="form-check-input"
+                        type="radio"
+                        name="gender"
+                        id="other"
+                        value="other"
+                        #gender="ngModel"
+                        [(ngModel)]="newPatients.gender"
+                        required
+                      />
+                      <label class="form-check-label" for="other">Other</label>
+                    </div>
+                    <div *ngIf="gender.touched && !newPatients.gender" class="text-danger">
+                      Gender is required
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="form-row m-3">
+                  <div class="col">
+                    <button type="submit" class="btn btn-primary">
+                      {{ isLoading ? "..." : "Add" }}
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </body>
+</html>
